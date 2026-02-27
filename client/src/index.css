@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-aura-navy text-white antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-2xl;
+  }
+
+  .glass-pro {
+    @apply bg-aura-card/60 backdrop-blur-2xl border border-white/[0.05] shadow-inner;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-400 hover:text-aura-cyan hover:bg-aura-cyan/5;
+  }
+
+  .sidebar-link.active {
+    @apply text-aura-cyan bg-aura-cyan/10 border-l-2 border-aura-cyan rounded-l-none;
+  }
+
+  .aura-btn-primary {
+    @apply bg-aura-cyan text-black px-6 py-2.5 rounded-lg font-bold text-sm tracking-wider uppercase transition-all hover:brightness-110 active:scale-95;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+  }
+
+  .data-badge {
+    @apply px-2 py-0.5 rounded-md font-mono text-[9px] uppercase tracking-widest border;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-aura-navy;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-aura-cyan/30;
+}
