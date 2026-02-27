@@ -10,7 +10,8 @@ import ExecutiveInsightsPanel from './components/panels/ExecutiveInsightsPanel';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io('http://localhost:5000');
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:5000';
+const socket = io(SERVER_URL);
 
 function App() {
     const [activePanel, setActivePanel] = useState('digital-twin');
@@ -24,7 +25,7 @@ function App() {
 
         const fetchAIData = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/ai/full-stack');
+                const res = await axios.get(`${SERVER_URL}/api/ai/full-stack`);
                 setAiData(res.data);
             } catch (e) { console.error("AI Offline"); }
         };
