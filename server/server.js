@@ -3,6 +3,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -46,6 +47,14 @@ setInterval(() => {
     };
     io.emit('telemetry_pulse', telemetry);
 }, 3000);
+
+// Serve Static Frontend
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// SPA Catch-all
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Aura Enhanced Server running on port ${PORT}`));
