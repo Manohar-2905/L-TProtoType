@@ -23,10 +23,11 @@ services:
           property: host
 
   # Frontend Client (Vite/React - Static Site)
-  - type: static_site
+  - type: web
     name: aura-client
+    env: static
     buildCommand: cd client && npm install && npm run build
-    publishPath: client/dist
+    staticPublishPath: client/dist
     envVars:
       - key: VITE_SERVER_URL
         fromService:
